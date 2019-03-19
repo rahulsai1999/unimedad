@@ -1,0 +1,58 @@
+<%include partials/header.ejs%>
+<br><br>
+<div class="container" style="background-color:white;border-radius:40px;text-align:center;padding:5%">
+
+<table class="table table-borderless" style="margin-left:18%">
+    
+    <tbody>
+      <tr>
+        <td><b>Name</b></td>
+        <td>Dr. Rajmohan Shrivastava</td>
+      </tr>
+      <tr>
+        <td><b>Medical License</b></td>
+        <td>63746</td>
+      </tr>
+      <tr>
+        <td><b>Experience</b></td>
+        <td>12 Years</td>
+      </tr>
+      <tr>
+        <td><b>Specialization</b></td>
+        <td>Orthopaedics</td>
+      </tr>
+    </tbody>
+</table>
+
+<br><hr>
+  
+<h5>Scan to start Session</h5>
+<%url="https://chart.googleapis.com/chart?cht=qr&chl="+"5c6a84f73327b20004bce6c8"+"&chs=180x180&choe=UTF-8&chld=L|2"%>
+<img style="margin-left: 0%" src="<%=url%>" alt=''>
+
+<br><hr>
+<h4>Active Sessions</h4>
+
+<%if(!!data){%>
+  <%for(var i=0;i<data.length;++i){%>
+    <%if(data[i].isactive){%>
+        <div class="card ">
+          <div class="card-body">
+            <h5 class="card-title">Patient ID: <%=data[i].patid%></h5>
+            <p><%=data[i].date%></p>
+            <p class="card-text">Session ID: <%=data[i].id%></p>
+            <%url="/session/"+data[i].id%>
+            <a href="<%=url%>" class="card-link">Goto Session</a>
+          </div>
+        </div>
+        <br>
+    <%}%>
+  <%}%>
+<%}%>
+
+
+
+
+
+</div>
+<%include partials/footer.ejs%>

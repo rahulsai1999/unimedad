@@ -1,0 +1,119 @@
+<%include partials/header.ejs %>
+  <div class="container emp-profile">
+              <form method="post">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="profile-img">
+                              <img src="https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg" alt=""/>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="profile-head">
+                                      <h5><%=currentUser.name%></h5>
+    <br>
+    <table class="table table-borderless">
+    
+    <tbody>
+      <tr>
+        <td>Age</td>
+        <% age=2019-parseInt(currentUser.DOB.slice(0,5)) %>
+        <td><%=age%></td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><%=currentUser.gender%></td>
+      </tr>
+      <tr>
+        <td>Blood Group</td>
+        <td><%=currentUser.bldgrp%></td>
+      </tr>
+      <tr>
+        <td>Height</td>
+        <td><%=currentUser.height%></td>
+      </tr>
+      <tr>
+        <td>Weight</td>
+        <td><%=currentUser.weight%></td>
+      </tr>
+      <tr>
+        <td><button type="button" class="btn btn-danger" onclick="location.href='/prescup';" style="cursor:pointer;">Prescription Upload</button></td>
+        <td><button type="button" class="btn btn-warning" onclick="location.href='/reportup';" style="cursor:pointer;">Report Upload</button></td>
+      </tr>
+    </tbody>
+  </table>
+                                      <p class="proile-rating"></p>
+                              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                  <li class="nav-item">
+                                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Prescriptions</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reports</a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                      <div class="col-md-2">
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="profile-work">
+                             <br>
+                              <h5>Uni-ID</h5><br>
+                              <h6><%=currentUser.id%></h6>
+                              <%url="https://chart.googleapis.com/chart?cht=qr&chl="+currentUser.id+"&chs=180x180&choe=UTF-8&chld=L|2"%>
+                             <img style="margin-left: -37%" src="<%=url%>" alt=''>
+                              
+                          </div>
+                      </div>
+                      <div class="col-md-8">
+                          <div class="tab-content profile-tab" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <%if(!!currentUser.prescriptions){%>
+                                        <%for(var i=0;i<currentUser.prescriptions.length;++i){%>
+                                        <%data=currentUser.prescriptions[i]%>
+                                        <div class="card ">
+                                        <div class="card-body">
+                                        <table class="table table-borderless">
+                                        <tbody>
+                                          <tr>
+                                            <td>Date Issued</td>
+                                            <td><%=data.dateissued%></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Valid Till</td>
+                                            <td><%=data.validity%></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <%inception=data.medicine.split(";")%>
+                                      <%for(var j=0;j<inception.length;++j){%>
+                                            <p style="margin-left:5%" class="card-text"><%=inception[j]%></p>
+                                          <%}%>  
+                                        </div>
+                                        </div>
+                                        <br>
+                                        <%}}%>
+                              </div>
+                              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                          <%if(!!currentUser.reports){%>
+                                          <%for(var i=0;i<currentUser.reports.length;++i){%>
+                                          <%data=currentUser.reports[i];%>
+                                          
+                                          <div class="card ">
+                                          <div class="card-body">
+                                            <h4 class="card-title"><%=data.title%></h4>
+                                            <h6><%=data.date%></h6>
+                                            <p class="card-text"><%=data.remarks%></p>
+                                            <a href="<%=data.reportUrl%>" class="card-link">Download</a>
+                                          </div>
+                                          </div>
+                                          <br>
+                                          <%}}%>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>           
+          </div>
+   <%include partials/footer.ejs %>

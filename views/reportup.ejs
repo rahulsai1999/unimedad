@@ -1,0 +1,43 @@
+<%include partials/header.ejs%>
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Upload Report</h5>
+            
+            <form class="form-signin" action="/reportup" method="post" enctype="multipart/form-data">
+              
+              <div class="form-label-group">
+                <input name="title" type="text" id="inputEmail" class="form-control" placeholder="Title" required>
+                <label for="inputEmail">Title</label>
+              </div>
+              <div class="form-label-group">
+                <input name="patid" type="text" id="inputEmail" class="form-control" placeholder="Patient ID" required>
+                <label for="inputEmail">Patient ID</label>
+              </div>
+              <div class="form-label-group">
+                <input name="docid" type="text" id="inputEmail" class="form-control" placeholder="Doctor ID" required>
+                <label for="inputEmail">Doctor ID</label>
+              </div>
+              <div class="form-label-group">
+                <input name="place" type="text" id="inputEmail" class="form-control" placeholder="Place" required>
+                <label for="inputEmail">Place</label>
+              </div>
+
+              <div class="form-label-group">
+                <input name="remarks" type="text" id="inputEmail" class="form-control" placeholder="Remarks" required>
+                <label for="inputEmail">Remarks</label>
+              </div>
+
+              <div class="container responsive">
+                <div class="form-group files color">
+                <label>Upload Your File </label>
+                <input type="file" name="avatar" class="form-control" multiple="">
+              </div>
+              </div>
+
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Submit</button>
+        </form>
+    </div>
+  <%include partials/footer.ejs%>

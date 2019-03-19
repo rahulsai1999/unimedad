@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Unimed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment-with-locales.min.js'></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <style type="text/css">
+    	body{
+    margin-top:20px;
+            background:url(bg1.jpg);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        color: white;}
+.order-card {
+    color: #fff;
+}
+
+.bg-c-blue {
+    background: linear-gradient(to top, #3494e6, #ec6ead);
+}
+
+.bg-c-green {
+    background: linear-gradient(to top, #11998e, #38ef7d);
+}
+
+.bg-c-yellow {
+    background: linear-gradient(to top, #c02425, #f0cb35);;
+}
+
+.bg-c-pink {
+    background: linear-gradient(to top, #642b73, #c6426e); 
+}
+
+
+.card {
+    border-radius: 100%;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+    </style>
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<br><br><br><br>
+<br><br>
+<br><br>
+
+<div class="container">
+   <div class="row align-items-center justify-content-center">
+       <div class="col-md-4 col-cl-3">
+           <h1 style="text-align: center">Login</h1>
+       </div>
+   </div>
+<br><br>
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-4 col-xl-3">
+            <div onclick="location.href='/pathome';" style="cursor:pointer;" class="card bg-c-blue order-card">
+                <div class="card-block">
+                   <img src="patient.png" class="rounded mx-auto d-block" height=80>
+                    <h6 class="m-b-20" style="text-align: center">Patients</h6>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div onclick="location.href='/dochome';" style="cursor:pointer;" class="card bg-c-green order-card">
+                <div class="card-block">
+                    <img src="doctor.png" class="rounded mx-auto d-block" height=80>
+                    <h6 class="m-b-20" style="text-align: center">Doctors</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%include partials/footer.ejs%>
