@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var reportSchema = new mongoose.Schema({
+var Report = new mongoose.Schema({
     title: String,
     date: String,
     patid: String,
@@ -10,4 +10,4 @@ var reportSchema = new mongoose.Schema({
     remarks:String
 });
 
-module.exports = mongoose.model("Report", reportSchema);
+module.exports = mongoose.model("Report", Report);

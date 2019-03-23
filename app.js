@@ -18,13 +18,14 @@ var app=express();
 //models
 var Presc = require("./models/presc");
 var Doctor = require("./models/doctor");
+var Record = require("./models/record");
 var Report = require("./models/report");
-var Patient = require("./models/patient");
+var User = require("./models/user");
 var Session = require("./models/session");
 
 //utilities
 //mongoose.connect("mongodb://localhost:27017/unimed",{ useNewUrlParser: true });
-mongoose.connect("mongodb://admin:admin83@ds145273.mlab.com:45273/testandroid",{ useNewUrlParser: true });
+mongoose.connect("mongodb://user23:user23@ds155164.mlab.com:55164/unimed",{ useNewUrlParser: true });
 //app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -43,9 +44,9 @@ app.use(require("express-session")({
  }));
  app.use(passport.initialize());
  app.use(passport.session());
- passport.use(new localStrategy(Patient.authenticate()));
- passport.serializeUser(Patient.serializeUser());
- passport.deserializeUser(Patient.deserializeUser());
+ passport.use(new localStrategy(User.authenticate()));
+ passport.serializeUser(User.serializeUser());
+ passport.deserializeUser(User.deserializeUser());
  
  app.use(function(req,res,next){
     curu=req.user;
@@ -63,6 +64,7 @@ app.get("/loginselect",function(req,res){
 });
 
 app.get("/pathome",isLoggedIn,function(req,res){
+    
     res.render("pathome");
 });
 app.get("/dochome",function(req,res){
@@ -78,7 +80,7 @@ app.get("/session/:id",function(req,res){
         console.log(err);
         else{
         if(found.isactive){
-            Patient.findById(found.patid,function(err,foundb){
+            User.findById(found.patid).populate("records reports prescriptions").exec(function(err,foundb){
                 res.render("session",{currentUser:foundb});
             });
             }
@@ -126,13 +128,13 @@ app.post('/reportup', upload.single('avatar'), function (req, res) {
               }
               else
               {
-                  Patient.findById(patid,function(err,found){
+                  User.findById(patid,function(err,found){
                       if(err)
                       console.log(err);
                       else
                       {
                           found.reports.push(newrep);
-                          Patient.findByIdAndUpdate(patid,found,function(err,fin){
+                          User.findByIdAndUpdate(patid,found,function(err,fin){
                               if(err)
                               console.log(err);
                               else
@@ -179,13 +181,13 @@ app.post("/prescup",function(req,res){
         }
         else
         {
-            Patient.findById(patid,function(err,found){
+            User.findById(patid,function(err,found){
                 if(err)
                 console.log(err);
                 else
                 {
                     found.prescriptions.push(newpresc);
-                    Patient.findByIdAndUpdate(patid,found,function(err,fin){
+                    User.findByIdAndUpdate(patid,found,function(err,fin){
                         if(err)
                         console.log(err);
                         else
@@ -209,16 +211,14 @@ app.get("/patreg",function(req,res){
 });
 
 app.post("/register",function(req,res){
-    Patient.register(new Patient(
+    User.register(new User(
     {   _id:shortid.generate().slice(0,7),
         name:req.body.name,
         DOB:req.body.dob,
         username:req.body.username,
         email:req.body.email,
-        gender:req.body.gender,
         height:req.body.height,
-        weight:req.body.weight,
-        bldgrp:req.body.bloodgrp
+        weight:req.body.weight
     }),
     req.body.password,
         function(err,user){

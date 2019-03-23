@@ -24,6 +24,9 @@
     "shortid": "^2.2.14"
   },
   "devDependencies": {},
+  "engines": {
+    "node":"7.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
