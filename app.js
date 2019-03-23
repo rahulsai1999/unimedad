@@ -64,8 +64,9 @@ app.get("/loginselect",function(req,res){
 });
 
 app.get("/pathome",isLoggedIn,function(req,res){
-    
-    res.render("pathome");
+    User.findById(req.user.id).populate("records reports prescriptions").exec(function(err,foundb){
+        res.render("pathome",{curuser:foundb});
+    });
 });
 app.get("/dochome",function(req,res){
     Session.find({docid:'5c6a84f73327b20004bce6c8'},function(err,found){

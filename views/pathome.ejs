@@ -10,31 +10,27 @@
                       </div>
                       <div class="col-md-6">
                           <div class="profile-head">
-                                      <h5><%=currentUser.name%></h5>
+                                      <h5><%=curuser.name%></h5>
     <br>
     <table class="table table-borderless">
     
     <tbody>
       <tr>
         <td>Age</td>
-        <% age=2019-parseInt(currentUser.DOB.slice(0,5)) %>
+        <% age=2019-parseInt(curuser.DOB.slice(6,10)) %>
         <td><%=age%></td>
       </tr>
       <tr>
-        <td>Gender</td>
-        <td><%=currentUser.gender%></td>
-      </tr>
-      <tr>
-        <td>Blood Group</td>
-        <td><%=currentUser.bldgrp%></td>
-      </tr>
-      <tr>
         <td>Height</td>
-        <td><%=currentUser.height%></td>
+        <td><%=curuser.height%></td>
       </tr>
       <tr>
         <td>Weight</td>
-        <td><%=currentUser.weight%></td>
+        <td><%=curuser.weight%></td>
+      </tr>
+      <tr>
+        <td>Risk Level</td>
+        <td><%=curuser.avgrat%></td>
       </tr>
     </tbody>
   </table>
@@ -57,8 +53,8 @@
                           <div class="profile-work">
                              <br>
                               <h5>Uni-ID</h5><br>
-                              <h6><%=currentUser.id%></h6>
-                              <%url="https://chart.googleapis.com/chart?cht=qr&chl="+currentUser.id+"&chs=180x180&choe=UTF-8&chld=L|2"%>
+                              <h6><%=curuser.id%></h6>
+                              <%url="https://chart.googleapis.com/chart?cht=qr&chl="+curuser.id+"&chs=180x180&choe=UTF-8&chld=L|2"%>
                              <img style="margin-left: -37%" src="<%=url%>" alt=''>
                               
                           </div>
@@ -66,9 +62,9 @@
                       <div class="col-md-8">
                           <div class="tab-content profile-tab" id="myTabContent">
                                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <%if(!!currentUser.prescriptions){%>
-                                        <%for(var i=0;i<currentUser.prescriptions.length;++i){%>
-                                        <%data=currentUser.prescriptions[i]%>
+                                        <%if(!!curuser.prescriptions){%>
+                                        <%for(var i=0;i<curuser.prescriptions.length;++i){%>
+                                        <%data=curuser.prescriptions[i]%>
                                         <div class="row">
                                         <div class="card ">
                                         <div class="card-body">
@@ -95,9 +91,9 @@
                                         <%}}%>
                               </div>
                               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                          <%if(!!currentUser.reports){%>
-                                          <%for(var i=0;i<currentUser.reports.length;++i){%>
-                                          <%data=currentUser.reports[i];%>
+                                          <%if(!!curuser.reports){%>
+                                          <%for(var i=0;i<curuser.reports.length;++i){%>
+                                          <%data=curuser.reports[i];%>
                                           <div class="row">
                                           <div class="card ">
                                           <div class="card-body">
